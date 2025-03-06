@@ -22,7 +22,6 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
     return data.products;
 });
 
-// État initial
 const initialState = {
     allItems: [] as Product[],
     filteredItems: [] as Product[],
@@ -30,7 +29,6 @@ const initialState = {
     error: null as string | null,
 };
 
-// Définition du slice Redux
 const productSlice = createSlice({
     name: "products",
     initialState,

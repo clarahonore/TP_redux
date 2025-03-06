@@ -27,7 +27,6 @@ const ProductList = () => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    // Appliquer les filtres sur **tous** les produits et non uniquement sur la page actuelle
     const filteredProducts = allItems
         .filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase()))
         .filter((product) => (selectedCategory ? product.category === selectedCategory : true))
@@ -40,7 +39,6 @@ const ProductList = () => {
             return 0;
         });
 
-    // Pagination appliquée **après** les filtres
     const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
     const displayedProducts = filteredProducts.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
 
@@ -81,7 +79,6 @@ const ProductList = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8 bg-white">
-            {/* Notification */}
             {notification && (
                 <div className={`fixed top-20 right-4 bg-orange text-white px-4 py-2 rounded shadow-lg transition-all ${fadeOut ? "animate-fade-out" : "animate-slide-in"}`}>
                     {notification}
@@ -90,7 +87,6 @@ const ProductList = () => {
 
             <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">Liste des Produits</h1>
 
-            {/* 🔹 Filtres */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
                 <input
                     type="text"
@@ -122,7 +118,6 @@ const ProductList = () => {
                 </button>
             </div>
 
-            {/* 🔹 Liste des produits avec pagination */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {displayedProducts.map((product: Product) => (
                     <div key={product.id} className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
@@ -143,7 +138,6 @@ const ProductList = () => {
                 ))}
             </div>
 
-            {/* 🔹 Pagination */}
             <div className="flex justify-center mt-8 space-x-4">
                 <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-4 py-2 border-2 border-orange text-orange rounded-lg hover:bg-orange hover:text-white transition">
                     Précédent

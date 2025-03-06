@@ -12,7 +12,6 @@ const initialState: { items: CartItem[] } = {
   items: [],
 };
 
-// Cart Slice
 const cartSlice = createSlice({
   name: "cart",
   initialState,
